@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.HTMLEditor?>
+
+<HBox spacing="20.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.focusbuddy.controllers.NotesController">
+   <children>
+      <!-- Left Panel - Notes List -->
+      <VBox styleClass="card" spacing="15.0" prefWidth="300.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <Label styleClass="card-title" text="Notes">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button fx:id="newNoteButton" styleClass="primary-button" text="+ New" />
+               </children>
+            </HBox>
+
+            <TextField fx:id="searchField" promptText="Search notes..." />
+
+            <ListView fx:id="notesList" prefHeight="400.0" />
+
+            <HBox spacing="10.0">
+               <children>
+                  <Button fx:id="deleteNoteButton" styleClass="secondary-button" text="Delete" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+
+      <!-- Right Panel - Note Editor -->
+      <VBox fx:id="notesContainer" spacing="15.0" HBox.hgrow="ALWAYS">
+         <children>
+            <!-- Note Header -->
+            <VBox styleClass="card" spacing="15.0">
+               <children>
+                  <TextField fx:id="noteTitleField" promptText="Note title..." styleClass="custom-text-field">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </TextField>
+
+                  <TextField fx:id="tagsField" promptText="Tags (comma separated)" styleClass="custom-text-field" />
+
+                  <!-- Simplified Header - Only Save Button -->
+                  <HBox spacing="10.0" alignment="CENTER_LEFT">
+                     <children>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="saveNoteButton" styleClass="primary-button" text="Save Note" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+
+            <!-- Note Content -->
+            <VBox styleClass="card" VBox.vgrow="ALWAYS">
+               <children>
+                  <HTMLEditor fx:id="noteEditor" prefHeight="500.0" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</HBox>

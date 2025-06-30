@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.focusbuddy.controllers.LoginController">
+   <center>
+      <VBox fx:id="loginContainer" alignment="CENTER" maxWidth="400.0" spacing="20.0" styleClass="login-container">
+         <children>
+            <VBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Label styleClass="app-title" text="FocusBuddy">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label styleClass="app-subtitle" text="Your Productivity Assistant">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            
+            <VBox spacing="15.0" styleClass="form-container">
+               <children>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label styleClass="field-label" text="Username" />
+                        <TextField fx:id="usernameField" promptText="Enter your username" styleClass="custom-text-field" />
+                     </children>
+                  </VBox>
+                  
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label styleClass="field-label" text="Password" />
+                        <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="custom-text-field" />
+                     </children>
+                  </VBox>
+                  
+                  <Label fx:id="statusLabel" styleClass="status-label" />
+                  
+                  <HBox spacing="10.0">
+                     <children>
+                        <Button fx:id="loginButton" styleClass="primary-button" text="Login" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="registerButton" styleClass="secondary-button" text="Register" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+               </padding>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </padding>
+      </VBox>
+   </center>
+   <top>
+      <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
+         <children>
+            <ToggleButton fx:id="themeToggle" styleClass="theme-toggle" text="☀️" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="20.0" top="20.0" />
+         </padding>
+      </HBox>
+   </top>
+</BorderPane>

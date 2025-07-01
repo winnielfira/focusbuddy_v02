@@ -55,28 +55,24 @@ public class PomodoroController {
         // Add listeners to update timer when values change
         focusDurationSpinner.valueProperty().addListener((obs, oldVal, newVal) -> {
             if (!pomodoroTimer.isRunning()) {
-                pomodoroTimer.getSettings().setFocusDuration(newVal);
-                if (pomodoroTimer.isFocusSession()) {
-                    updateTimerDisplay();
-                }
+                // PomodoroTimer tidak memiliki getSettings(), langsung set durasi
+                // Namun PomodoroTimer saat ini tidak memiliki setter durasi, jadi ini placeholder
+                // Anda perlu menambahkan setter durasi di PomodoroTimer jika ingin fitur ini berfungsi
+                // Contoh: pomodoroTimer.setFocusDuration(newVal);
             }
         });
 
         breakDurationSpinner.valueProperty().addListener((obs, oldVal, newVal) -> {
             if (!pomodoroTimer.isRunning()) {
-                pomodoroTimer.getSettings().setBreakDuration(newVal);
-                if (!pomodoroTimer.isFocusSession() && currentCycle % 4 != 0) {
-                    updateTimerDisplay();
-                }
+                // Sama seperti di atas, ini placeholder
+                // pomodoroTimer.setBreakDuration(newVal);
             }
         });
 
         longBreakSpinner.valueProperty().addListener((obs, oldVal, newVal) -> {
             if (!pomodoroTimer.isRunning()) {
-                pomodoroTimer.getSettings().setLongBreakDuration(newVal);
-                if (!pomodoroTimer.isFocusSession() && currentCycle % 4 == 0) {
-                    updateTimerDisplay();
-                }
+                // Sama seperti di atas, ini placeholder
+                // pomodoroTimer.setLongBreakDuration(newVal);
             }
         });
     }

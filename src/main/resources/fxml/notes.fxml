@@ -39,15 +39,15 @@
                      <font><Font size="13.0" /></font>
                   </TextField>
 
-                  <!-- Filter Buttons -->
-                  <HBox spacing="8.0" alignment="CENTER_LEFT">
-                     <children>
-                        <Button text="All" styleClass="filter-btn-active" prefHeight="25.0" />
-                        <Button text="Work" styleClass="filter-btn" prefHeight="25.0" />
-                        <Button text="Personal" styleClass="filter-btn" prefHeight="25.0" />
-                        <ComboBox fx:id="sortCombo" styleClass="sort-dropdown" prefWidth="90.0" prefHeight="25.0" promptText="Sort" />
-                     </children>
-                  </HBox>
+<!-- Filter Buttons -->
+<HBox spacing="8.0" alignment="CENTER_LEFT">
+   <children>
+      <Button text="All" styleClass="filter-btn-active" prefHeight="25.0" />
+      <Button text="Work" styleClass="filter-btn" prefHeight="25.0" />
+      <Button text="Personal" styleClass="filter-btn" prefHeight="25.0" />
+      <ComboBox fx:id="sortCombo" styleClass="sort-dropdown" prefWidth="90.0" prefHeight="25.0" promptText="Sort" />
+   </children>
+</HBox>
                </children>
             </VBox>
 

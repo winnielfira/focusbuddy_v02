@@ -441,6 +441,7 @@ public class LoginController {
 
     private void showRegisterDialog() {
         try {
+            System.out.println("DEBUG: showRegisterDialog dipanggil");
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setTitle("Create Account");
             dialog.setHeaderText("Join FocusBuddy Community");
@@ -506,14 +507,19 @@ public class LoginController {
                             return;
                         }
 
+                        System.out.println("DEBUG: Memulai proses registrasi user");
                         registerUser(regUsername.getText(), password, regEmail.getText(), regFullName.getText());
                     } catch (Exception e) {
+                        System.out.println("ERROR: Gagal memproses registrasi");
+                        e.printStackTrace();
                         ErrorHandler.handleError("Registration", "Failed to process registration", e);
                     }
                 }
             });
 
         } catch (Exception e) {
+            System.out.println("ERROR: Gagal menampilkan dialog registrasi");
+            e.printStackTrace();
             ErrorHandler.handleError("Registration Dialog", "Failed to show registration dialog", e);
         }
     }
@@ -580,6 +586,7 @@ public class LoginController {
 
     private void registerUser(String username, String password, String email, String fullName) {
         try {
+            System.out.println("DEBUG: registerUser dipanggil dengan username: " + username);
             // Validate inputs
             if (!ValidationUtils.isValidUsername(username)) {
                 showStatusWithAnimation("Username must be 3-20 characters, letters, numbers, and underscores only", false);
@@ -690,6 +697,8 @@ public class LoginController {
             registrationThread.start();
 
         } catch (Exception e) {
+            System.out.println("ERROR: Gagal memulai proses registrasi");
+            e.printStackTrace();
             ErrorHandler.handleError("Registration Error", "Failed to start registration process", e);
         }
     }

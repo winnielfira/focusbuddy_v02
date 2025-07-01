@@ -13,7 +13,7 @@ public class GoalsService {
     
     public boolean createGoal(Goal goal) {
         try (Connection conn = DatabaseManager.getInstance().getConnection()) {
-            String query = "INSERT INTO goals (user_id, title, description, target_value, goal_type, target_date, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO goals (user_id, title, description, target_value, goal_type, target_date, status, color) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             
             stmt.setInt(1, goal.getUserId());
@@ -23,6 +23,7 @@ public class GoalsService {
             stmt.setString(5, goal.getGoalType().name());
             stmt.setDate(6, Date.valueOf(goal.getTargetDate()));
             stmt.setString(7, goal.getStatus().name());
+            stmt.setString(8, goal.getColor());
             
             int result = stmt.executeUpdate();
             
@@ -43,7 +44,7 @@ public class GoalsService {
     
     public boolean updateGoal(Goal goal) {
         try (Connection conn = DatabaseManager.getInstance().getConnection()) {
-            String query = "UPDATE goals SET title = ?, description = ?, target_value = ?, current_value = ?, target_date = ?, status = ? WHERE id = ?";
+            String query = "UPDATE goals SET title = ?, description = ?, target_value = ?, current_value = ?, target_date = ?, status = ?, color = ? WHERE id = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             
             stmt.setString(1, goal.getTitle());
@@ -52,7 +53,8 @@ public class GoalsService {
             stmt.setInt(4, goal.getCurrentValue());
             stmt.setDate(5, Date.valueOf(goal.getTargetDate()));
             stmt.setString(6, goal.getStatus().name());
-            stmt.setInt(7, goal.getId());
+            stmt.setString(7, goal.getColor());
+            stmt.setInt(8, goal.getId());
             
             return stmt.executeUpdate() > 0;
             

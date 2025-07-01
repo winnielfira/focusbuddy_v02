@@ -47,6 +47,8 @@ public class DashboardController {
     @FXML private Button goalsBtn;
     @FXML private Button exportBtn;
 
+    @FXML private Button addNewTaskBtn; // Tambahkan tombol add new task di dashboard
+
     // Dashboard content elements
     @FXML private Label timerDisplay;
     @FXML private Button startTimerBtn;
@@ -82,50 +84,21 @@ public class DashboardController {
     private Node dashboardContent;
     private ActivityService activityService;
 
-    @FXML
-    private void initialize() {
-        try {
-            // Initialize services safely
-            initializeServices();
-
-            // Set welcome message with error handling
-            setupWelcomeMessage();
-
-            // Store original dashboard content
-            if (contentArea != null && contentArea.getChildren().size() > 0) {
-                dashboardContent = contentArea.getChildren().get(0);
-            }
-
-            // Set up navigation with error handling
-            setupNavigationSafely();
-
-            // Set up theme toggle with error handling
-            setupThemeToggleSafely();
-
-            // Set up timer (only if dashboard elements exist)
-            setupPomodoroTimerSafely();
-
-            // Set up logout with error handling
-            setupLogoutSafely();
-
-            // Setup responsive layout AFTER window is shown
-            Platform.runLater(() -> {
+    private void setupAddNewTaskButton() {
+        if (addNewTaskBtn != null) {
+            addNewTaskBtn.setOnAction(e -> {
                 try {
-                    setupResponsiveLayout();
-                    ensureWindowIsMaximized();
-                    // ✅ LOAD REAL DATA FROM DATABASE
-                    loadRealDashboardData();
-                    startPeriodicUpdates();
-                } catch (Exception e) {
-                    ErrorHandler.handleError("Dashboard Initialization",
-                            "Failed to complete dashboard setup", e);
-                    clearDashboardStats(); // Ensure clean state on error
+                    showTasks();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/tasks.fxml"));
+                    loader.load();
+                    Object controller = loader.getController();
+                    if (controller instanceof com.focusbuddy.controllers.TasksController) {
+                        ((com.focusbuddy.controllers.TasksController) controller).createNewTask();
+                    }
+                } catch (Exception ex) {
+                    ErrorHandler.handleError("Add New Task", "Failed to open tasks view", ex);
                 }
             });
-
-        } catch (Exception e) {
-            ErrorHandler.handleError("Dashboard Initialization Error",
-                    "Failed to initialize dashboard", e);
         }
     }
 

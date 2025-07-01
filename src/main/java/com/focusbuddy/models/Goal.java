@@ -22,6 +22,7 @@ public abstract class Goal {
     protected LocalDate targetDate;
     protected Status status;
     protected LocalDateTime createdAt;
+    protected String color; // Tambahkan field color
     
     public Goal() {
         this.status = Status.ACTIVE;
@@ -31,6 +32,14 @@ public abstract class Goal {
     public abstract void updateProgress(int increment);
     public abstract double getProgressPercentage();
     public abstract boolean isCompleted();
+
+    // Metode abstrak baru sesuai ERD
+    public abstract void addTask(Task task);
+    public abstract void addNote(Note note);
+    public abstract void addPomodoroSession(PomodoroSession session);
+    public abstract java.util.List<Task> getTasks();
+    public abstract java.util.List<Note> getNotes();
+    public abstract java.util.List<PomodoroSession> getPomodoroSessions();
     
     // Getters and Setters
     public int getId() { return id; }
@@ -62,4 +71,7 @@ public abstract class Goal {
     
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+
+    public String getColor() { return color; }
+    public void setColor(String color) { this.color = color; }
 }

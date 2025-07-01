@@ -652,7 +652,7 @@ public class TasksController {
         }
     }
 
-    private void createNewTask() {
+    public void createNewTask() {
         try {
             currentTask = null;
 

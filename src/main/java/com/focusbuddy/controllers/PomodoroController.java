@@ -55,7 +55,7 @@ public class PomodoroController {
         // Add listeners to update timer when values change
         focusDurationSpinner.valueProperty().addListener((obs, oldVal, newVal) -> {
             if (!pomodoroTimer.isRunning()) {
-                pomodoroTimer.setFocusDuration(newVal);
+                pomodoroTimer.getSettings().setFocusDuration(newVal);
                 if (pomodoroTimer.isFocusSession()) {
                     updateTimerDisplay();
                 }
@@ -64,7 +64,7 @@ public class PomodoroController {
 
         breakDurationSpinner.valueProperty().addListener((obs, oldVal, newVal) -> {
             if (!pomodoroTimer.isRunning()) {
-                pomodoroTimer.setBreakDuration(newVal);
+                pomodoroTimer.getSettings().setBreakDuration(newVal);
                 if (!pomodoroTimer.isFocusSession() && currentCycle % 4 != 0) {
                     updateTimerDisplay();
                 }
@@ -73,7 +73,7 @@ public class PomodoroController {
 
         longBreakSpinner.valueProperty().addListener((obs, oldVal, newVal) -> {
             if (!pomodoroTimer.isRunning()) {
-                pomodoroTimer.setLongBreakDuration(newVal);
+                pomodoroTimer.getSettings().setLongBreakDuration(newVal);
                 if (!pomodoroTimer.isFocusSession() && currentCycle % 4 == 0) {
                     updateTimerDisplay();
                 }

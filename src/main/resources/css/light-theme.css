@@ -1,473 +1,214 @@
-/* Enhanced Light Theme - Blue Purple & Poppins Font & Font Awesome Support */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
-
-/* Color Palette Variables */
+/* Light Theme Styles - Enhanced Responsive */
 .root {
-  -fx-font-family: "Poppins", "Segoe UI", sans-serif;
   -fx-base: #ffffff;
-  -fx-background: #f8fafc;
+  -fx-background: #f5f5f5;
   -fx-control-inner-background: #ffffff;
-  -fx-accent: #6366f1;
-  -fx-default-button: #6366f1;
-  -fx-focus-color: #8b5cf6;
-  -fx-faint-focus-color: #8b5cf644;
-
-  /* Custom Blue-Purple Palette */
-  -primary-color: #6366f1;      /* Indigo */
-  -secondary-color: #8b5cf6;    /* Violet */
-  -tertiary-color: #a855f7;     /* Purple */
-  -accent-color: #3b82f6;       /* Blue */
-  -success-color: #10b981;      /* Emerald */
-  -warning-color: #f59e0b;      /* Amber */
-  -danger-color: #ef4444;       /* Red */
-  -text-primary: #1e293b;       /* Slate 800 */
-  -text-secondary: #64748b;     /* Slate 500 */
-  -text-light: #94a3b8;         /* Slate 400 */
-  -surface: #ffffff;
-  -surface-variant: #f8fafc;    /* Slate 50 */
-  -surface-secondary: #f1f5f9;  /* Slate 100 */
-  -border-color: #e2e8f0;       /* Slate 200 */
-  -border-light: #f1f5f9;       /* Slate 100 */
-  -shadow-color: rgba(99, 102, 241, 0.1);
-  -shadow-hover: rgba(99, 102, 241, 0.2);
-}
-
-/* Global Typography */
-.text {
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-fill: -text-primary;
-}
-
-.label {
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-text-fill: -text-primary;
+  -fx-accent: #2196f3;
+  -fx-default-button: #2196f3;
+  -fx-focus-color: #2196f3;
+  -fx-faint-focus-color: #2196f322;
 }
 
 /* Login Styles */
 .login-container {
-  -fx-background-color: linear-gradient(135deg, -primary-color 0%, -secondary-color 50%, -tertiary-color 100%);
-  -fx-background-radius: 24;
-  -fx-padding: 40;
-  -fx-min-width: 480;
-  -fx-max-width: 520;
-  -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.25), 32, 0, 0, 12);
+  -fx-background-color: linear-gradient(to bottom right, #667eea 0%, #764ba2 100%);
+  -fx-background-radius: 10;
+  -fx-padding: 20;
+  -fx-min-width: 400;
+  -fx-max-width: 500;
 }
 
 .app-title {
   -fx-text-fill: white;
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-weight: 800;
-  -fx-font-size: 48px;
-  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 8, 0, 0, 4);
+  -fx-font-weight: bold;
+  -fx-font-size: 36px;
 }
 
 .app-subtitle {
-  -fx-text-fill: rgba(255, 255, 255, 0.9);
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-weight: 400;
-  -fx-font-size: 18px;
+  -fx-text-fill: #e8eaf6;
+  -fx-font-size: 16px;
 }
 
 .form-container {
-  -fx-background-color: rgba(255, 255, 255, 0.95);
-  -fx-background-radius: 24px;
-  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 32, 0, 0, 8);
-  -fx-min-width: 400;
-  -fx-border-color: rgba(255, 255, 255, 0.3);
-  -fx-border-width: 1;
-  -fx-border-radius: 24;
+  -fx-background-color: white;
+  -fx-background-radius: 15px;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 20, 0, 0, 5);
+  -fx-min-width: 350;
 }
 
 .field-label {
-  -fx-text-fill: -text-primary;
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-weight: 600;
+  -fx-text-fill: #333333;
+  -fx-font-weight: bold;
   -fx-font-size: 14px;
 }
 
 .custom-text-field {
-  -fx-background-color: -surface-variant;
-  -fx-border-color: -border-color;
-  -fx-border-radius: 16px;
-  -fx-background-radius: 16px;
-  -fx-padding: 16px 20px;
-  -fx-font-family: "Poppins", sans-serif;
+  -fx-background-color: #f8f9fa;
+  -fx-border-color: #e9ecef;
+  -fx-border-radius: 8px;
+  -fx-background-radius: 8px;
+  -fx-padding: 12px;
   -fx-font-size: 14px;
-  -fx-font-weight: 400;
-  -fx-text-fill: -text-primary;
   -fx-min-width: 200;
-  -fx-pref-width: 340;
-  -fx-effect: dropshadow(gaussian, -shadow-color, 4, 0, 0, 2);
-  -fx-transition: all 0.3s ease;
+  -fx-pref-width: 300;
 }
 
 .custom-text-field:focused {
-  -fx-border-color: -primary-color;
-  -fx-border-width: 2;
+  -fx-border-color: #2196f3;
   -fx-background-color: white;
-  -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.3), 12, 0, 0, 4);
-  -fx-scale-x: 1.02;
-  -fx-scale-y: 1.02;
 }
 
-/* Enhanced Buttons */
 .primary-button {
-  -fx-background-color: linear-gradient(135deg, -primary-color 0%, -secondary-color 100%);
+  -fx-background-color: #2196f3;
   -fx-text-fill: white;
-  -fx-background-radius: 16px;
-  -fx-padding: 16px 32px;
-  -fx-font-family: "Poppins", sans-serif;
+  -fx-background-radius: 8px;
+  -fx-padding: 12px 24px;
   -fx-font-size: 14px;
-  -fx-font-weight: 600;
+  -fx-font-weight: bold;
   -fx-cursor: hand;
-  -fx-min-width: 140;
-  -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.3), 12, 0, 0, 4);
-  -fx-transition: all 0.3s ease;
+  -fx-min-width: 100;
 }
 
 .primary-button:hover {
-  -fx-background-color: linear-gradient(135deg, -secondary-color 0%, -tertiary-color 100%);
-  -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.4), 16, 0, 0, 6);
-  -fx-scale-x: 1.05;
-  -fx-scale-y: 1.05;
+  -fx-background-color: #1976d2;
 }
 
 .secondary-button {
   -fx-background-color: transparent;
-  -fx-text-fill: -primary-color;
-  -fx-border-color: -primary-color;
-  -fx-border-radius: 16px;
-  -fx-background-radius: 16px;
-  -fx-padding: 16px 32px;
-  -fx-font-family: "Poppins", sans-serif;
+  -fx-text-fill: #2196f3;
+  -fx-border-color: #2196f3;
+  -fx-border-radius: 8px;
+  -fx-background-radius: 8px;
+  -fx-padding: 12px 24px;
   -fx-font-size: 14px;
-  -fx-font-weight: 600;
+  -fx-font-weight: bold;
   -fx-cursor: hand;
-  -fx-min-width: 140;
-  -fx-border-width: 2;
-  -fx-transition: all 0.3s ease;
+  -fx-min-width: 100;
 }
 
 .secondary-button:hover {
-  -fx-background-color: -primary-color;
+  -fx-background-color: #2196f3;
   -fx-text-fill: white;
-  -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.2), 8, 0, 0, 3);
-  -fx-scale-x: 1.03;
-  -fx-scale-y: 1.03;
 }
 
 .theme-toggle {
   -fx-background-color: rgba(255, 255, 255, 0.2);
   -fx-text-fill: white;
-  -fx-background-radius: 30px;
-  -fx-padding: 12px 16px;
-  -fx-font-family: "Poppins", sans-serif;
+  -fx-background-radius: 20px;
+  -fx-padding: 8px 12px;
   -fx-font-size: 16px;
   -fx-cursor: hand;
-  -fx-min-width: 60;
-  -fx-border-color: rgba(255, 255, 255, 0.3);
-  -fx-border-width: 1;
-  -fx-border-radius: 30;
-  -fx-transition: all 0.3s ease;
+  -fx-min-width: 50;
 }
 
 .theme-toggle:selected {
-  -fx-background-color: rgba(255, 255, 255, 0.4);
-  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 6, 0, 0, 2);
+  -fx-background-color: rgba(255, 255, 255, 0.3);
 }
 
 .status-label {
-  -fx-font-family: "Poppins", sans-serif;
   -fx-font-size: 12px;
-  -fx-font-weight: 500;
+  -fx-font-weight: bold;
 }
 
 /* Dashboard Styles */
 .dashboard-container {
-  -fx-background-color: -surface-variant;
+  -fx-background-color: #f5f5f5;
 }
 
 .sidebar {
   -fx-background-color: white;
-  -fx-border-color: -border-light;
+  -fx-border-color: #e0e0e0;
   -fx-border-width: 0 1 0 0;
-  -fx-min-width: 220;
-  -fx-pref-width: 280;
-  -fx-max-width: 320;
-  -fx-effect: dropshadow(gaussian, -shadow-color, 8, 0, 4, 0);
+  -fx-min-width: 200;
+  -fx-pref-width: 250;
+  -fx-max-width: 300;
 }
 
 .sidebar-button {
   -fx-background-color: transparent;
-  -fx-text-fill: -text-secondary;
+  -fx-text-fill: #666666;
   -fx-alignment: CENTER_LEFT;
-  -fx-padding: 18px 28px;
-  -fx-font-family: "Poppins", sans-serif;
+  -fx-padding: 15px 20px;
   -fx-font-size: 14px;
-  -fx-font-weight: 500;
   -fx-background-radius: 0;
-  -fx-min-height: 60;
-  -fx-border-width: 0;
-  -fx-transition: all 0.3s ease;
+  -fx-min-height: 50;
 }
 
 .sidebar-button:hover {
-  -fx-background-color: rgba(99, 102, 241, 0.08);
-  -fx-text-fill: -primary-color;
-  -fx-font-weight: 600;
+  -fx-background-color: #f0f0f0;
 }
 
 .sidebar-button.active {
-  -fx-background-color: linear-gradient(90deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.1) 100%);
-  -fx-text-fill: -primary-color;
-  -fx-border-color: -primary-color;
-  -fx-border-width: 0 4 0 0;
-  -fx-font-weight: 700;
+  -fx-background-color: #e3f2fd;
+  -fx-text-fill: #2196f3;
+  -fx-border-color: #2196f3;
+  -fx-border-width: 0 3 0 0;
 }
 
 .content-area {
   -fx-background-color: transparent;
 }
 
-/* Enhanced Cards */
 .card {
   -fx-background-color: white;
-  -fx-background-radius: 20px;
-  -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.08), 20, 0, 0, 4);
-  -fx-padding: 28px;
-  -fx-min-width: 280;
-  -fx-border-color: -border-light;
-  -fx-border-width: 1;
-  -fx-border-radius: 20;
-  -fx-transition: all 0.3s ease;
-}
-
-.card:hover {
-  -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.15), 28, 0, 0, 8);
-  -fx-scale-x: 1.02;
-  -fx-scale-y: 1.02;
+  -fx-background-radius: 10px;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
+  -fx-padding: 20px;
+  -fx-min-width: 250;
 }
 
 .card-title {
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-size: 20px;
-  -fx-font-weight: 700;
-  -fx-text-fill: -text-primary;
+  -fx-font-size: 18px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #333333;
   -fx-wrap-text: true;
 }
 
-/* Timer Styles */
 .timer-display {
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-size: 56px;
-  -fx-font-weight: 800;
-  -fx-text-fill: -primary-color;
+  -fx-font-size: 48px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #2196f3;
 }
 
-.mini-timer {
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-size: 40px;
-  -fx-font-weight: 700;
-  -fx-text-fill: -primary-color;
-}
-
-/* Statistics Cards */
-.stat-card {
-  -fx-background-color: white;
-  -fx-background-radius: 20px;
-  -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.08), 16, 0, 0, 4);
-  -fx-padding: 28px;
-  -fx-min-height: 140;
-  -fx-alignment: center;
-  -fx-border-color: -border-light;
-  -fx-border-width: 1;
-  -fx-border-radius: 20;
-  -fx-transition: all 0.3s ease;
-}
-
-.stat-card:hover {
-  -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.2), 24, 0, 0, 8);
-  -fx-scale-x: 1.05;
-  -fx-scale-y: 1.05;
-}
-
-.stat-number {
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-size: 36px;
-  -fx-font-weight: 800;
-  -fx-text-fill: -primary-color;
-}
-
-.stat-label {
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-size: 12px;
-  -fx-text-fill: -text-secondary;
-  -fx-font-weight: 600;
-  -fx-text-transform: uppercase;
-}
-
-/* Greeting and Time Labels */
-.greeting-label {
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-size: 32px;
-  -fx-font-weight: 700;
-  -fx-text-fill: -text-primary;
-}
-
-.date-label {
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-size: 14px;
-  -fx-text-fill: -text-secondary;
-  -fx-font-weight: 500;
-}
-
-.time-label {
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-size: 18px;
-  -fx-font-weight: 600;
-  -fx-text-fill: -text-secondary;
-}
-
-/* Action Buttons */
-.action-button {
-  -fx-background-color: -surface-secondary;
-  -fx-text-fill: -text-primary;
-  -fx-background-radius: 16px;
-  -fx-padding: 16px 24px;
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-size: 14px;
-  -fx-font-weight: 500;
-  -fx-alignment: center-left;
-  -fx-cursor: hand;
-  -fx-effect: dropshadow(gaussian, -shadow-color, 4, 0, 0, 2);
-  -fx-transition: all 0.3s ease;
-}
-
-.action-button:hover {
-  -fx-background-color: rgba(99, 102, 241, 0.1);
-  -fx-text-fill: -primary-color;
-  -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.15), 8, 0, 0, 3);
-  -fx-scale-x: 1.02;
-  -fx-scale-y: 1.02;
-}
-
-/* Link Buttons */
-.link-button {
-  -fx-background-color: transparent;
-  -fx-text-fill: -primary-color;
-  -fx-underline: false;
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-size: 12px;
-  -fx-font-weight: 600;
-  -fx-cursor: hand;
-  -fx-padding: 8px 16px;
-  -fx-background-radius: 8;
-  -fx-transition: all 0.3s ease;
-}
-
-.link-button:hover {
-  -fx-text-fill: -secondary-color;
-  -fx-background-color: rgba(99, 102, 241, 0.1);
-}
-
-/* Quote and Motivational Text */
-.quote-text {
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-size: 14px;
-  -fx-text-fill: -text-primary;
-  -fx-font-style: italic;
-  -fx-font-weight: 400;
-  -fx-padding: 20px;
-  -fx-background-color: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-  -fx-background-radius: 16px;
-  -fx-border-color: rgba(251, 191, 36, 0.3);
-  -fx-border-width: 1;
-  -fx-border-radius: 16;
-  -fx-effect: dropshadow(gaussian, rgba(251, 191, 36, 0.2), 8, 0, 0, 2);
-}
-
-/* Progress Bars */
 .progress-bar {
-  -fx-accent: linear-gradient(90deg, -primary-color 0%, -secondary-color 100%);
-  -fx-background-radius: 12px;
-  -fx-pref-height: 12px;
-  -fx-min-width: 180;
-  -fx-pref-width: 240;
-  -fx-max-width: 400;
+  -fx-accent: #4caf50;
+  -fx-min-width: 150;
+  -fx-pref-width: 200;
+  -fx-max-width: 300;
 }
 
-.progress-bar .track {
-  -fx-background-color: -surface-secondary;
-  -fx-background-radius: 12px;
-}
-
-.progress-bar .bar {
-  -fx-background-color: linear-gradient(90deg, -primary-color 0%, -secondary-color 100%);
-  -fx-background-radius: 12px;
-}
-
-/* Task Items */
 .task-item {
-  -fx-background-color: -surface-variant;
-  -fx-background-radius: 16px;
-  -fx-padding: 20px;
-  -fx-border-color: -border-color;
-  -fx-border-radius: 16px;
-  -fx-min-height: 80;
-  -fx-effect: dropshadow(gaussian, -shadow-color, 4, 0, 0, 2);
-  -fx-transition: all 0.3s ease;
+  -fx-background-color: #f8f9fa;
+  -fx-background-radius: 8px;
+  -fx-padding: 15px;
+  -fx-border-color: #e9ecef;
+  -fx-border-radius: 8px;
+  -fx-min-height: 60;
 }
 
 .task-item:hover {
-  -fx-background-color: white;
-  -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.15), 12, 0, 0, 4);
-  -fx-scale-x: 1.02;
-  -fx-scale-y: 1.02;
+  -fx-background-color: #e9ecef;
 }
 
 .priority-high {
-  -fx-border-color: -danger-color;
+  -fx-border-color: #f44336;
   -fx-border-width: 0 0 0 4;
 }
 
 .priority-medium {
-  -fx-border-color: -warning-color;
+  -fx-border-color: #ff9800;
   -fx-border-width: 0 0 0 4;
 }
 
 .priority-low {
-  -fx-border-color: -success-color;
+  -fx-border-color: #4caf50;
   -fx-border-width: 0 0 0 4;
 }
 
-/* Profile Specific Styles */
-.danger-button {
-  -fx-background-color: linear-gradient(135deg, -danger-color 0%, #dc2626 100%);
-  -fx-text-fill: white;
-  -fx-background-radius: 16px;
-  -fx-padding: 16px 32px;
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-size: 14px;
-  -fx-font-weight: 600;
-  -fx-cursor: hand;
-  -fx-min-width: 140;
-  -fx-effect: dropshadow(gaussian, rgba(239, 68, 68, 0.3), 12, 0, 0, 4);
-  -fx-transition: all 0.3s ease;
-}
-
-.danger-button:hover {
-  -fx-background-color: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-  -fx-effect: dropshadow(gaussian, rgba(239, 68, 68, 0.4), 16, 0, 0, 6);
-  -fx-scale-x: 1.05;
-  -fx-scale-y: 1.05;
-}
-
-/* Form Controls */
+/* Responsive adjustments */
 .scroll-pane {
   -fx-fit-to-width: true;
   -fx-fit-to-height: true;
-  -fx-background-color: transparent;
 }
 
 .scroll-pane .viewport {
@@ -478,385 +219,117 @@
   -fx-background-color: transparent;
 }
 
-/* List Views */
+/* List view styling */
 .list-view {
-  -fx-background-color: white;
-  -fx-border-color: -border-color;
-  -fx-border-radius: 16;
-  -fx-background-radius: 16;
-  -fx-effect: dropshadow(gaussian, -shadow-color, 4, 0, 0, 2);
+  -fx-background-color: transparent;
+  -fx-border-color: #e0e0e0;
+  -fx-border-radius: 5;
 }
 
 .list-cell {
   -fx-background-color: transparent;
   -fx-border-color: transparent;
-  -fx-padding: 12px 16px;
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-size: 14px;
-  -fx-font-weight: 400;
-  -fx-text-fill: -text-primary;
-  -fx-transition: all 0.3s ease;
+  -fx-padding: 5px;
 }
 
 .list-cell:selected {
-  -fx-background-color: rgba(99, 102, 241, 0.15);
-  -fx-text-fill: -primary-color;
-  -fx-border-color: -primary-color;
-  -fx-border-width: 2px;
-  -fx-border-radius: 12;
-  -fx-background-radius: 12;
-  -fx-font-weight: 600;
+  -fx-background-color: #e3f2fd;
+  -fx-text-fill: #2196f3;
 }
 
 .list-cell:hover {
-  -fx-background-color: rgba(99, 102, 241, 0.08);
+  -fx-background-color: #f5f5f5;
 }
 
-/* Text Areas */
+/* Text area styling */
 .text-area {
-  -fx-background-color: white;
-  -fx-border-color: -border-color;
-  -fx-border-radius: 16px;
-  -fx-background-radius: 16px;
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-size: 14px;
-  -fx-text-fill: -text-primary;
-  -fx-padding: 16px;
+  -fx-background-color: #f8f9fa;
+  -fx-border-color: #e9ecef;
+  -fx-border-radius: 8px;
+  -fx-background-radius: 8px;
 }
 
 .text-area:focused {
-  -fx-border-color: -primary-color;
-  -fx-border-width: 2;
-  -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.1), 8, 0, 0, 2);
-}
-
-.text-area .content {
-  -fx-background-color: transparent;
-}
-
-/* Combo Boxes */
-.combo-box {
+  -fx-border-color: #2196f3;
   -fx-background-color: white;
-  -fx-border-color: -border-color;
-  -fx-border-radius: 16px;
-  -fx-background-radius: 16px;
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-size: 14px;
-  -fx-padding: 12px 16px;
+}
+
+/* Combo box styling */
+.combo-box {
+  -fx-background-color: #f8f9fa;
+  -fx-border-color: #e9ecef;
+  -fx-border-radius: 8px;
+  -fx-background-radius: 8px;
 }
 
 .combo-box:focused {
-  -fx-border-color: -primary-color;
-  -fx-border-width: 2;
+  -fx-border-color: #2196f3;
 }
 
-.combo-box .list-cell {
-  -fx-text-fill: -text-primary;
-  -fx-font-family: "Poppins", sans-serif;
-}
-
-/* Date Pickers */
+/* Date picker styling */
 .date-picker {
-  -fx-background-color: white;
-  -fx-border-color: -border-color;
-  -fx-border-radius: 16px;
-  -fx-background-radius: 16px;
-  -fx-font-family: "Poppins", sans-serif;
+  -fx-background-color: #f8f9fa;
+  -fx-border-color: #e9ecef;
+  -fx-border-radius: 8px;
+  -fx-background-radius: 8px;
 }
 
 .date-picker:focused {
-  -fx-border-color: -primary-color;
-  -fx-border-width: 2;
+  -fx-border-color: #2196f3;
 }
 
-.date-picker .text-field {
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-text-fill: -text-primary;
-}
-
-/* Spinners */
+/* Spinner styling */
 .spinner {
-  -fx-background-color: white;
-  -fx-border-color: -border-color;
-  -fx-border-radius: 16px;
-  -fx-background-radius: 16px;
-  -fx-font-family: "Poppins", sans-serif;
+  -fx-background-color: #f8f9fa;
+  -fx-border-color: #e9ecef;
+  -fx-border-radius: 8px;
+  -fx-background-radius: 8px;
 }
 
 .spinner:focused {
-  -fx-border-color: -primary-color;
-  -fx-border-width: 2;
+  -fx-border-color: #2196f3;
 }
 
-.spinner .text-field {
-  -fx-text-fill: -text-primary;
-  -fx-font-family: "Poppins", sans-serif;
-}
-
-/* Checkboxes */
+/* Checkbox styling */
 .check-box {
-  -fx-text-fill: -text-primary;
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-size: 14px;
+  -fx-text-fill: #333333;
 }
 
 .check-box:selected .mark {
-  -fx-background-color: -primary-color;
+  -fx-background-color: #2196f3;
 }
 
-.check-box .box {
-  -fx-background-color: white;
-  -fx-border-color: -border-color;
-  -fx-border-radius: 6;
-  -fx-background-radius: 6;
-}
-
-.check-box:selected .box {
-  -fx-background-color: -primary-color;
-  -fx-border-color: -primary-color;
-}
-
-/* Sliders */
+/* Slider styling */
 .slider {
   -fx-background-color: transparent;
 }
 
 .slider .track {
-  -fx-background-color: -surface-secondary;
-  -fx-background-radius: 6;
+  -fx-background-color: #e0e0e0;
+  -fx-background-radius: 2;
 }
 
 .slider .thumb {
-  -fx-background-color: -primary-color;
+  -fx-background-color: #2196f3;
   -fx-background-radius: 50%;
-  -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.3), 8, 0, 0, 2);
 }
 
-/* HTML Editor */
+/* HTML Editor basic styling */
 .html-editor {
   -fx-background-color: white;
-  -fx-border-color: -border-color;
-  -fx-border-radius: 16px;
-  -fx-background-radius: 16px;
-}
-
-/* Color Picker */
-.color-picker {
-  -fx-background-color: white;
-  -fx-border-color: -border-color;
-  -fx-border-radius: 16px;
-  -fx-background-radius: 16px;
-}
-
-.color-picker:focused {
-  -fx-border-color: -primary-color;
-  -fx-border-width: 2;
-}
-
-/* Toggle Button */
-.toggle-button {
-  -fx-background-color: -surface-variant;
-  -fx-text-fill: -text-primary;
-  -fx-border-color: -border-color;
-  -fx-border-radius: 12px;
-  -fx-background-radius: 12px;
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-padding: 12px 20px;
-}
-
-.toggle-button:selected {
-  -fx-background-color: -primary-color;
-  -fx-text-fill: white;
-  -fx-border-color: -primary-color;
-}
-
-.toggle-button:hover {
-  -fx-background-color: rgba(99, 102, 241, 0.1);
-}
-
-/* Charts */
-.chart {
-  -fx-background-color: transparent;
-}
-
-.chart-title {
-  -fx-text-fill: -text-primary;
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-weight: 700;
-}
-
-.axis {
-  -fx-tick-label-fill: -text-secondary;
-  -fx-font-family: "Poppins", sans-serif;
-}
-
-.axis-label {
-  -fx-text-fill: -text-secondary;
-  -fx-font-family: "Poppins", sans-serif;
-}
-
-/* Pie Chart Styling */
-.chart-pie-label {
-  -fx-fill: -text-secondary;
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-size: 11px;
-}
-
-/* Table View */
-.table-view {
-  -fx-background-color: white;
-  -fx-border-color: -border-color;
-  -fx-border-radius: 16px;
-  -fx-background-radius: 16px;
-}
-
-.table-view .column-header {
-  -fx-background-color: -surface-variant;
-  -fx-text-fill: -text-primary;
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-font-weight: 600;
-}
-
-.table-view .table-cell {
-  -fx-text-fill: -text-primary;
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-border-color: -border-color;
-}
-
-.table-view .table-row-cell:selected {
-  -fx-background-color: rgba(99, 102, 241, 0.2);
-}
-
-/* Menu Styling */
-.menu-bar {
-  -fx-background-color: white;
-  -fx-border-color: -border-color;
-  -fx-border-width: 0 0 1 0;
-}
-
-.menu-bar .menu {
-  -fx-text-fill: -text-primary;
-  -fx-font-family: "Poppins", sans-serif;
-}
-
-.context-menu {
-  -fx-background-color: white;
-  -fx-border-color: -border-color;
-  -fx-border-radius: 12px;
-  -fx-background-radius: 12px;
-  -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.15), 16, 0, 0, 4);
-}
-
-.menu-item {
-  -fx-text-fill: -text-primary;
-  -fx-font-family: "Poppins", sans-serif;
-}
-
-.menu-item:focused {
-  -fx-background-color: rgba(99, 102, 241, 0.2);
-}
-
-/* Tooltip */
-.tooltip {
-  -fx-background-color: white;
-  -fx-text-fill: -text-primary;
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-background-radius: 8px;
-  -fx-border-color: -border-color;
+  -fx-border-color: #e0e0e0;
   -fx-border-radius: 8px;
-  -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.2), 12, 0, 0, 3);
 }
 
-/* Tab Pane */
-.tab-pane {
-  -fx-tab-min-width: 140px;
+/* Responsive breakpoints simulation through sizing */
+.small-screen {
+  -fx-font-size: 12px;
 }
 
-.tab-pane .tab-header-area {
-  -fx-background-color: white;
+.medium-screen {
+  -fx-font-size: 14px;
 }
 
-.tab-pane .tab {
-  -fx-background-color: -surface-variant;
-  -fx-text-fill: -text-secondary;
-  -fx-font-family: "Poppins", sans-serif;
-  -fx-background-radius: 12px 12px 0 0;
-}
-
-.tab-pane .tab:selected {
-  -fx-background-color: -primary-color;
-  -fx-text-fill: white;
-}
-
-/* Scroll Bar */
-.scroll-bar {
-  -fx-background-color: transparent;
-}
-
-.scroll-bar .track {
-  -fx-background-color: -surface-variant;
-  -fx-background-radius: 6px;
-}
-
-.scroll-bar .thumb {
-  -fx-background-color: -border-color;
-  -fx-background-radius: 6px;
-}
-
-.scroll-bar .thumb:hover {
-  -fx-background-color: -text-light;
-}
-
-/* Font Awesome Icons Support */
-.fa-icon {
-  -fx-font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands";
-  -fx-font-weight: 900;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 1200px) {
-  .greeting-label {
-    -fx-font-size: 28px;
-  }
-
-  .stat-number {
-    -fx-font-size: 32px;
-  }
-
-  .mini-timer {
-    -fx-font-size: 36px;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .greeting-label {
-    -fx-font-size: 24px;
-  }
-
-  .stat-number {
-    -fx-font-size: 28px;
-  }
-
-  .mini-timer {
-    -fx-font-size: 32px;
-  }
-
-  .stat-card {
-    -fx-padding: 20px;
-    -fx-min-height: 120px;
-  }
-
-  .card {
-    -fx-padding: 24px;
-  }
-
-  .sidebar {
-    -fx-min-width: 200px;
-    -fx-pref-width: 240px;
-  }
-
-  .sidebar-button {
-    -fx-padding: 14px 20px;
-    -fx-font-size: 13px;
-  }
+.large-screen {
+  -fx-font-size: 16px;
 }

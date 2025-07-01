@@ -1,7 +1,5 @@
 package com.focusbuddy;
 
-import com.focusbuddy.controllers.LoginController;
-import com.focusbuddy.database.DatabaseManager;
 import com.focusbuddy.utils.ThemeManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,84 +14,71 @@ public class FocusBuddyApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            // Initialize database
-            DatabaseManager.getInstance().initializeDatabase();
+            // Load splash screen
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/splash-screen.fxml"));
 
-            // Load login scene
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
-
-            // Get screen dimensions for responsive design
+            // Get screen dimensions for centering
             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 
-            // Create scene without fixed dimensions - let it size naturally based on content
-            Scene scene = new Scene(loader.load());
+            // Create splash scene with fixed size
+            Scene splashScene = new Scene(loader.load(), 600, 400);
 
-            // Apply default theme
-            ThemeManager.getInstance().applyTheme(scene, ThemeManager.Theme.LIGHT);
+            // Apply modern light theme to splash
+            splashScene.getStylesheets().clear();
+            splashScene.getStylesheets().add(getClass().getResource("/css/modern-light-theme.css").toExternalForm());
 
-            // Configure the primary stage
-            primaryStage.setTitle("FocusBuddy - Productivity Assistant");
-            primaryStage.setScene(scene);
+            // Configure splash stage - KEEP DECORATED to avoid style conflicts
+            primaryStage.setTitle("FocusBuddy - Loading...");
+            primaryStage.setScene(splashScene);
+            // DON'T SET UNDECORATED - this causes the style conflict
+            primaryStage.setResizable(false);
 
-            // Set responsive window properties
-            primaryStage.setResizable(true);
+            // Set fixed size for splash
+            primaryStage.setWidth(600);
+            primaryStage.setHeight(400);
 
-            // Set minimum size to ensure usability
-            primaryStage.setMinWidth(800);
-            primaryStage.setMinHeight(600);
+            // Center splash screen
+            primaryStage.setX((screenBounds.getWidth() - 600) / 2);
+            primaryStage.setY((screenBounds.getHeight() - 400) / 2);
 
-            // Set initial size based on screen size (80% of screen, but not larger than optimal size)
-            double initialWidth = Math.min(1200, screenBounds.getWidth() * 0.8);
-            double initialHeight = Math.min(800, screenBounds.getHeight() * 0.8);
-
-            primaryStage.setWidth(initialWidth);
-            primaryStage.setHeight(initialHeight);
-
-            // Center the window on screen
-            primaryStage.setX((screenBounds.getWidth() - initialWidth) / 2);
-            primaryStage.setY((screenBounds.getHeight() - initialHeight) / 2);
-
-            // Set application icon (with proper error handling)
+            // Set application icon (with error handling)
             try {
                 Image icon = new Image(getClass().getResourceAsStream("/images/icon.png"));
                 if (!icon.isError()) {
                     primaryStage.getIcons().add(icon);
                 }
             } catch (Exception iconError) {
-                System.out.println("Warning: Could not load application icon - " + iconError.getMessage());
-                // Continue without icon
+                System.out.println("Info: Application icon not found, using default.");
             }
 
-            // Show the stage
+            // Show splash screen
             primaryStage.show();
 
-            // Optional: Handle window close request for cleanup
+            // Set focus to ensure splash is visible
+            primaryStage.toFront();
+            primaryStage.requestFocus();
+
+            // Handle window close request
             primaryStage.setOnCloseRequest(event -> {
                 try {
-                    // Close database connections
-                    DatabaseManager.getInstance().closeConnections();
+                    System.exit(0);
                 } catch (Exception e) {
                     System.err.println("Error during application shutdown: " + e.getMessage());
-                } finally {
-                    System.exit(0);
-                }
-            });
-
-            // Optional: Add window state listener for better responsive behavior
-            primaryStage.maximizedProperty().addListener((obs, wasMaximized, isMaximized) -> {
-                if (isMaximized) {
-                    // When maximized, ensure content scales properly
-                    System.out.println("Window maximized - content should scale to full screen");
+                    System.exit(1);
                 }
             });
 
         } catch (Exception e) {
             System.err.println("Failed to start FocusBuddy application: " + e.getMessage());
             e.printStackTrace();
-
-            // Show error dialog or fallback UI if needed
-            System.exit(1);
+            showErrorAndExit("Failed to start application: " + e.getMessage());
         }
+    }
+
+    private void showErrorAndExit(String errorMessage) {
+        System.err.println("FATAL ERROR: " + errorMessage);
+        System.err.println("The application will now exit.");
+        System.exit(1);
     }
 
     public static void main(String[] args) {
@@ -104,7 +89,16 @@ public class FocusBuddyApp extends Application {
         // Enable hardware acceleration if available
         System.setProperty("prism.order", "sw,d3d,es2");
 
-        // Launch the JavaFX application
-        launch(args);
+        // Better font rendering
+        System.setProperty("prism.text", "t2k");
+        System.setProperty("prism.lcdtext", "true");
+
+        try {
+            launch(args);
+        } catch (Exception e) {
+            System.err.println("Failed to launch application: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 }

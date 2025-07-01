@@ -27,15 +27,24 @@ public class MoodTrackerController {
     @FXML private Label moodStreakLabel;
     
     private MoodService moodService;
-    
+
     @FXML
     private void initialize() {
-        moodService = new MoodService();
-        
-        setupMoodSlider();
-        setupSaveButton();
-        loadMoodData();
-        loadMoodChart();
+        try {
+            moodService = new MoodService();
+
+            setupMoodSlider();
+            setupSaveButton();
+
+            // ✅ UBAH: Load data real
+            loadMoodData();
+            loadMoodChart();
+
+            System.out.println("✅ Mood tracker initialized successfully");
+        } catch (Exception e) {
+            System.err.println("Error initializing mood tracker: " + e.getMessage());
+            showEmptyState(); // ✅ TAMBAH
+        }
     }
     
     private void setupMoodSlider() {
@@ -89,26 +98,55 @@ public class MoodTrackerController {
             );
         }
     }
-    
-    private void loadMoodData() {
-        int userId = UserSession.getInstance().getCurrentUser().getId();
-        List<MoodEntry> recentEntries = moodService.getRecentMoodEntries(userId, 7);
-        
-        // Update statistics
-        if (!recentEntries.isEmpty()) {
-            double averageMood = recentEntries.stream()
-                .mapToInt(MoodEntry::getMoodLevel)
-                .average()
-                .orElse(0.0);
-            
-            averageMoodLabel.setText(String.format("Average: %.1f", averageMood));
-            
-            int streak = moodService.getMoodStreak(userId);
-            moodStreakLabel.setText("Streak: " + streak + " days");
+
+    // ✅ UBAH NAMA dari clearMoodStats() ke showEmptyState()
+    private void showEmptyState() {
+        if (averageMoodLabel != null) {
+            averageMoodLabel.setText("No mood entries yet - start tracking!");
         }
-        
-        // Update history
-        updateMoodHistory(recentEntries);
+        if (moodStreakLabel != null) {
+            moodStreakLabel.setText("Log your mood daily to build a streak");
+        }
+        if (moodHistory != null) {
+            moodHistory.getChildren().clear();
+            Label emptyLabel = new Label("🌈 Start tracking your mood to see patterns and insights!");
+            emptyLabel.setStyle("-fx-text-fill: #6b7280; -fx-font-size: 14px; -fx-padding: 20;");
+            moodHistory.getChildren().add(emptyLabel);
+        }
+        if (moodChart != null) {
+            moodChart.getData().clear();
+        }
+    }
+
+    private void loadMoodData() {
+        try {
+            int userId = UserSession.getInstance().getCurrentUser().getId();
+            List<MoodEntry> recentEntries = moodService.getRecentMoodEntries(userId, 7);
+
+            if (!recentEntries.isEmpty()) {
+                double averageMood = recentEntries.stream()
+                        .mapToInt(MoodEntry::getMoodLevel)
+                        .average()
+                        .orElse(0.0);
+
+                averageMoodLabel.setText(String.format("Average: %.1f/5", averageMood));
+
+                int streak = moodService.getMoodStreak(userId);
+                if (streak > 0) {
+                    moodStreakLabel.setText("Streak: " + streak + " days 🔥");
+                } else {
+                    moodStreakLabel.setText("Start your mood tracking streak!");
+                }
+
+                updateMoodHistory(recentEntries);
+            } else {
+                // ✅ TAMBAH: Show empty state untuk user baru
+                showEmptyState();
+            }
+        } catch (Exception e) {
+            System.err.println("Error loading mood data: " + e.getMessage());
+            showEmptyState(); // ✅ TAMBAH
+        }
     }
     
     private void updateMoodHistory(List<MoodEntry> entries) {

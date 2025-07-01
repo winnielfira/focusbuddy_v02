@@ -37,11 +37,15 @@ public class DatabaseManager {
         return currentConnection;
     }
 
+    // ✅ HAPUS METHOD cleanupAllData() - JANGAN BERSIHKAN DATA USER
+    // Data user seharusnya tetap tersimpan di database
+
     public void initializeDatabase() {
         try (Connection conn = getConnection()) {
             createDatabase(conn);
             createTables(conn);
             runMigrations(conn);
+            // ✅ TIDAK LAGI MEMANGGIL cleanupAllData() - BIARKAN DATA USER TETAP ADA
             System.out.println("Database initialized successfully!");
         } catch (SQLException e) {
             System.err.println("Database initialization failed: " + e.getMessage());
@@ -136,6 +140,7 @@ public class DatabaseManager {
                 title VARCHAR(200) NOT NULL,
                 content LONGTEXT,
                 tags VARCHAR(500),
+                category VARCHAR(100) DEFAULT 'General',
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                 FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
@@ -200,24 +205,12 @@ public class DatabaseManager {
             }
         }
 
-        // Migration 3: Create user_profiles table
-        if (!migrationExists(conn, "create_user_profiles_table")) {
-            String createUserProfilesTable = """
-        CREATE TABLE IF NOT EXISTS user_profiles (
-            user_id INT PRIMARY KEY,
-            student_id VARCHAR(50),
-            major VARCHAR(100),
-            bio TEXT,
-            profile_image_path VARCHAR(500),
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-            INDEX idx_user_id (user_id)
-        )
-        """;
-            try (PreparedStatement stmt = conn.prepareStatement(createUserProfilesTable)) {
+        // Migration 3: Add category to notes table
+        if (!migrationExists(conn, "add_category_notes")) {
+            String addCategory = "ALTER TABLE notes ADD COLUMN IF NOT EXISTS category VARCHAR(100) DEFAULT 'General'";
+            try (PreparedStatement stmt = conn.prepareStatement(addCategory)) {
                 stmt.execute();
-                recordMigration(conn, "create_user_profiles_table");
+                recordMigration(conn, "add_category_notes");
             }
         }
     }
@@ -247,7 +240,79 @@ public class DatabaseManager {
         }
     }
 
-    // =============== NEW METHODS FOR ENHANCED CONNECTION MANAGEMENT ===============
+    // ✅ METODE BARU UNTUK DEBUGGING - HANYA UNTUK TESTING
+    /**
+     * Debugging method to check user data in database
+     * HANYA UNTUK TESTING - JANGAN DIGUNAKAN DI PRODUCTION
+     */
+    public void debugUserData(int userId) {
+        try (Connection conn = getConnection()) {
+            String[] tables = {"tasks", "mood_entries", "focus_sessions", "notes", "goals"};
+
+            System.out.println("=== DEBUG: User Data for ID: " + userId + " ===");
+
+            for (String table : tables) {
+                String query = "SELECT COUNT(*) as count FROM " + table + " WHERE user_id = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                    stmt.setInt(1, userId);
+                    ResultSet rs = stmt.executeQuery();
+                    if (rs.next()) {
+                        int count = rs.getInt("count");
+                        System.out.println(table + ": " + count + " records");
+                    }
+                }
+            }
+            System.out.println("=== END DEBUG ===");
+        } catch (SQLException e) {
+            System.err.println("Error debugging user data: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Development method to reset ONLY demo data
+     * Hanya menghapus data dari user demo, tidak user lain
+     */
+    public void resetDemoDataOnly() {
+        try (Connection conn = getConnection()) {
+            // Cari user demo
+            String findDemoQuery = "SELECT id FROM users WHERE username = 'demo'";
+            PreparedStatement findStmt = conn.prepareStatement(findDemoQuery);
+            ResultSet rs = findStmt.executeQuery();
+
+            if (rs.next()) {
+                int demoUserId = rs.getInt("id");
+
+                // Disable foreign key checks
+                conn.createStatement().execute("SET FOREIGN_KEY_CHECKS = 0");
+
+                // Delete only demo user data
+                String[] tables = {"tasks", "mood_entries", "focus_sessions", "notes", "goals"};
+
+                for (String table : tables) {
+                    String deleteQuery = "DELETE FROM " + table + " WHERE user_id = ?";
+                    PreparedStatement deleteStmt = conn.prepareStatement(deleteQuery);
+                    deleteStmt.setInt(1, demoUserId);
+                    int deleted = deleteStmt.executeUpdate();
+                    System.out.println("✅ Deleted " + deleted + " records from " + table + " for demo user");
+                    deleteStmt.close();
+                }
+
+                // Re-enable foreign key checks
+                conn.createStatement().execute("SET FOREIGN_KEY_CHECKS = 1");
+
+                System.out.println("✅ Demo data reset completed!");
+            } else {
+                System.out.println("ℹ️ Demo user not found, no data to reset");
+            }
+
+            findStmt.close();
+        } catch (SQLException e) {
+            System.err.println("Failed to reset demo data: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    // =============== ENHANCED CONNECTION MANAGEMENT ===============
 
     /**
      * Close all database connections properly

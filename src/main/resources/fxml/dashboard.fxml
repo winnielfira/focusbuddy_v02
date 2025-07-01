@@ -1,193 +1,254 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.chart.PieChart?>
 
-<BorderPane fx:id="dashboardContainer" styleClass="dashboard-container" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.focusbuddy.controllers.DashboardController">
+<BorderPane fx:id="dashboardContainer" prefHeight="800.0" prefWidth="1200.0" styleClass="dashboard-container" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.focusbuddy.controllers.DashboardController">
+
+   <!-- TOP NAVIGATION BAR -->
    <top>
-      <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: white; -fx-padding: 15px 20px;" minHeight="60.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="55.0" spacing="15.0" styleClass="top-bar">
          <children>
-            <Label fx:id="welcomeLabel" styleClass="card-title" text="Welcome to FocusBuddy!" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
+            <HBox alignment="CENTER_LEFT" spacing="12.0">
+               <children>
+                  <StackPane>
+                     <children>
+                        <Circle radius="16.0" styleClass="logo-circle-2" />
+                        <Label style="-fx-font-size: 16px;" text="🎯" />
+                     </children>
+                  </StackPane>
+                  <VBox spacing="1.0">
+                     <children>
+                        <Label fx:id="welcomeLabel" maxWidth="350.0" styleClass="welcome-title" text="Welcome back!">
+                           <font><Font name="System Bold" size="15.0" /></font>
+                        </Label>
+                        <Label styleClass="welcome-subtitle" text="Ready to boost your productivity?">
+                           <font><Font size="11.0" /></font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
             <Region HBox.hgrow="ALWAYS" />
-            <Label fx:id="currentTimeLabel" styleClass="time-label" text="12:00 PM" />
-            <ToggleButton fx:id="themeToggle" styleClass="theme-toggle" text="☀️" />
-            <Button fx:id="logoutButton" styleClass="secondary-button" text="Logout" />
+            <HBox alignment="CENTER" spacing="12.0">
+               <children>
+                  <ToggleButton fx:id="themeToggle" styleClass="theme-toggle" text="☀️" />
+                  <Button fx:id="logoutButton" styleClass="logout-button" text="Sign Out">
+                     <font><Font size="11.0" /></font>
+                  </Button>
+               </children>
+            </HBox>
          </children>
+         <padding><Insets bottom="12.0" left="20.0" right="20.0" top="12.0" /></padding>
       </HBox>
    </top>
+
+   <!-- SIDEBAR NAVIGATION -->
    <left>
-      <VBox fx:id="sidebar" prefWidth="250.0" styleClass="sidebar" minWidth="200.0">
+      <VBox fx:id="sidebar" maxWidth="240.0" minWidth="200.0" prefWidth="220.0" styleClass="sidebar">
          <children>
-            <VBox spacing="5.0">
+            <!-- User Profile Section -->
+            <VBox alignment="CENTER" spacing="10.0" styleClass="user-profile-section">
                <children>
-                  <Button fx:id="dashboardBtn" maxWidth="1.7976931348623157E308"
-                          styleClass="sidebar-button" text="&#xf3c5; Dashboard" />
-                  <Button fx:id="tasksBtn" maxWidth="1.7976931348623157E308"
-                          styleClass="sidebar-button" text="&#xf058; Tasks" />
-                  <Button fx:id="pomodoroBtn" maxWidth="1.7976931348623157E308"
-                          styleClass="sidebar-button" text="&#xf017; Pomodoro" />
-                  <Button fx:id="moodBtn" maxWidth="1.7976931348623157E308"
-                          styleClass="sidebar-button" text="&#xf118; Mood Tracker" />
-                  <Button fx:id="notesBtn" maxWidth="1.7976931348623157E308"
-                          styleClass="sidebar-button" text="&#xf15c; Notes" />
-                  <Button fx:id="goalsBtn" maxWidth="1.7976931348623157E308"
-                          styleClass="sidebar-button" text="&#xf140; Goals" />
-                  <Button fx:id="profileBtn" maxWidth="1.7976931348623157E308"
-                          styleClass="sidebar-button" text="&#xf007; Profile" />
+                  <StackPane>
+                     <children>
+                        <Circle radius="24.0" styleClass="profile-avatar" />
+                        <Label style="-fx-font-size: 18px; -fx-text-fill: white;" text="👤" />
+                     </children>
+                  </StackPane>
+                  <VBox alignment="CENTER" spacing="2.0">
+                     <children>
+                        <Label styleClass="profile-name" text="Getting Started">
+                           <font><Font name="System Bold" size="12.0" /></font>
+                        </Label>
+                        <Label styleClass="profile-level" text="Beginner Level ⭐">
+                           <font><Font size="10.0" /></font>
+                        </Label>
+                     </children>
+                  </VBox>
                </children>
-               <padding>
-                  <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
-               </padding>
+               <padding><Insets bottom="15.0" top="15.0" /></padding>
+            </VBox>
+
+            <VBox spacing="8.0">
+               <children>
+                  <Label styleClass="sidebar-section-header" text="NAVIGATION" />
+                  <VBox spacing="3.0">
+                     <children>
+                        <Button fx:id="dashboardBtn" maxWidth="Infinity" minHeight="40.0" styleClass="sidebar-button" text="📊  Dashboard" />
+                        <Button fx:id="tasksBtn" maxWidth="Infinity" minHeight="40.0" styleClass="sidebar-button" text="✅  My Tasks" />
+                        <Button fx:id="pomodoroBtn" maxWidth="Infinity" minHeight="40.0" styleClass="sidebar-button" text="🍅  Focus Timer" />
+                        <Button fx:id="moodBtn" maxWidth="Infinity" minHeight="40.0" styleClass="sidebar-button" text="😊  Mood Tracker" />
+                        <Button fx:id="notesBtn" maxWidth="Infinity" minHeight="40.0" styleClass="sidebar-button" text="📝  Notes" />
+                        <Button fx:id="goalsBtn" maxWidth="Infinity" minHeight="40.0" styleClass="sidebar-button" text="🎯  Goals" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+
+            <Separator>
+               <VBox.margin><Insets bottom="15.0" left="20.0" right="20.0" top="15.0" /></VBox.margin>
+            </Separator>
+
+            <VBox spacing="8.0">
+               <children>
+                  <Label styleClass="sidebar-section-header" text="TOOLS" />
+                  <VBox spacing="3.0">
+                     <children>
+                        <Button fx:id="exportBtn" maxWidth="Infinity" minHeight="40.0" styleClass="sidebar-button" text="💾  Export Data" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS" />
+
+            <!-- Daily Quote Section -->
+            <VBox alignment="CENTER" spacing="8.0" styleClass="daily-quote-section">
+               <children>
+                  <Label style="-fx-font-size: 16px;" text="💡" />
+                  <Label styleClass="daily-quote" text="&quot;Success is the sum of small efforts repeated daily.&quot;" textAlignment="CENTER" wrapText="true">
+                     <font><Font size="10.0" /></font>
+                  </Label>
+               </children>
+               <padding><Insets bottom="12.0" left="15.0" right="15.0" top="12.0" /></padding>
+            </VBox>
+
+            <VBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Label styleClass="version-text" text="FocusBuddy v1.0">
+                     <font><Font size="9.0" /></font>
+                  </Label>
+               </children>
+               <padding><Insets bottom="15.0" /></padding>
             </VBox>
          </children>
+         <padding><Insets bottom="10.0" left="15.0" right="15.0" top="15.0" /></padding>
       </VBox>
    </left>
+
+   <!-- MAIN CONTENT AREA -->
    <center>
-      <StackPane fx:id="contentArea">
+      <StackPane fx:id="contentArea" prefHeight="745.0" prefWidth="980.0">
          <children>
-            <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
-                        style="-fx-background-color: transparent;" pannable="true">
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="false" style="-fx-background-color: transparent;" vbarPolicy="AS_NEEDED">
                <content>
-                  <VBox spacing="25.0" fillWidth="true">
+                  <VBox fillWidth="true" maxWidth="1200.0" prefWidth="940.0" spacing="20.0">
                      <children>
-                        <!-- Welcome & Daily Overview -->
-                        <VBox spacing="15.0">
+                        <!-- HERO SECTION -->
+                        <HBox alignment="CENTER" spacing="20.0">
                            <children>
-                              <HBox spacing="15.0" alignment="CENTER_LEFT">
+                              <!-- Quick Stats Cards - SEMUA DATA DARI DATABASE -->
+                              <VBox spacing="12.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Label fx:id="greetingLabel" styleClass="greeting-label" text="Good Morning!" />
-                                    <Region HBox.hgrow="ALWAYS" />
-                                    <Label fx:id="dateLabel" styleClass="date-label" text="Monday, June 30, 2025" />
-                                 </children>
-                              </HBox>
-
-                              <!-- Daily Stats Cards -->
-                              <HBox spacing="15.0" fillHeight="false">
-                                 <children>
-                                    <!-- Tasks Card -->
-                                    <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER">
+                                    <HBox spacing="15.0">
                                        <children>
-                                          <Label text="📋" style="-fx-font-size: 24px;" />
-                                          <Label fx:id="tasksCompletedLabel" text="0" styleClass="stat-number" />
-                                          <Label text="Tasks Completed" styleClass="stat-label" />
-                                       </children>
-                                    </VBox>
-
-                                    <!-- Focus Time Card -->
-                                    <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER">
-                                       <children>
-                                          <Label text="⏱️" style="-fx-font-size: 24px;" />
-                                          <Label fx:id="focusTimeLabel" text="0h 0m" styleClass="stat-number" />
-                                          <Label text="Focus Time" styleClass="stat-label" />
-                                       </children>
-                                    </VBox>
-
-                                    <!-- Streak Card -->
-                                    <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER">
-                                       <children>
-                                          <Label text="🔥" style="-fx-font-size: 24px;" />
-                                          <Label fx:id="streakLabel" text="0" styleClass="stat-number" />
-                                          <Label text="Day Streak" styleClass="stat-label" />
-                                       </children>
-                                    </VBox>
-
-                                    <!-- Goals Card -->
-                                    <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER">
-                                       <children>
-                                          <Label text="🎯" style="-fx-font-size: 24px;" />
-                                          <Label fx:id="goalsProgressLabel" text="0/0" styleClass="stat-number" />
-                                          <Label text="Goals Progress" styleClass="stat-label" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-
-                        <!-- Main Content Row -->
-                        <HBox spacing="20.0" fillHeight="false">
-                           <children>
-                              <!-- Left Column -->
-                              <VBox spacing="20.0" HBox.hgrow="ALWAYS" prefWidth="400.0">
-                                 <children>
-                                    <!-- Quick Pomodoro -->
-                                    <VBox styleClass="card">
-                                       <children>
-                                          <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                          <VBox spacing="6.0" styleClass="stat-card-modern" HBox.hgrow="ALWAYS">
                                              <children>
-                                                <Label styleClass="card-title" text="🍅 Quick Focus" />
-                                                <Region HBox.hgrow="ALWAYS" />
-                                                <Button fx:id="fullPomodoroBtn" styleClass="link-button" text="Full Timer" />
-                                             </children>
-                                          </HBox>
-
-                                          <VBox alignment="CENTER" spacing="15.0">
-                                             <children>
-                                                <Label fx:id="timerDisplay" styleClass="mini-timer" text="25:00" />
-                                                <ProgressBar fx:id="timerProgress" prefWidth="250.0" progress="0.0" />
-                                                <HBox alignment="CENTER" spacing="10.0">
+                                                <HBox alignment="CENTER_LEFT" spacing="8.0">
                                                    <children>
-                                                      <Button fx:id="startTimerBtn" styleClass="primary-button" text="▶ Start" prefWidth="80.0" />
-                                                      <Button fx:id="pauseTimerBtn" styleClass="secondary-button" text="⏸ Pause" prefWidth="80.0" />
-                                                      <Button fx:id="resetTimerBtn" styleClass="secondary-button" text="⏹ Reset" prefWidth="80.0" />
+                                                      <Label style="-fx-font-size: 16px;" text="✅" />
+                                                      <Label fx:id="tasksCompletedLabel" styleClass="stat-number" text="No tasks completed">
+                                                         <font><Font name="System Bold" size="13.0" /></font>
+                                                      </Label>
                                                    </children>
                                                 </HBox>
+                                                <Label styleClass="stat-label" text="Tasks Today" />
+                                                <ProgressBar fx:id="tasksProgress" prefHeight="4.0" progress="0.0" styleClass="stat-progress" />
+                                             </children>
+                                          </VBox>
+
+                                          <VBox spacing="6.0" styleClass="stat-card-modern" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                                   <children>
+                                                      <Label style="-fx-font-size: 16px;" text="🍅" />
+                                                      <Label fx:id="focusTimeLabel" styleClass="stat-number" text="No focus time recorded">
+                                                         <font><Font name="System Bold" size="13.0" /></font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <Label styleClass="stat-label" text="Focus Time" />
+                                                <ProgressBar fx:id="focusProgress" prefHeight="4.0" progress="0.0" styleClass="stat-progress" />
                                              </children>
                                           </VBox>
                                        </children>
-                                    </VBox>
+                                    </HBox>
 
-                                    <!-- Upcoming Tasks -->
-                                    <VBox styleClass="card">
+                                    <HBox spacing="15.0">
                                        <children>
-                                          <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                          <VBox spacing="6.0" styleClass="stat-card-modern" HBox.hgrow="ALWAYS">
                                              <children>
-                                                <Label styleClass="card-title" text="📋 Today's Tasks" />
-                                                <Region HBox.hgrow="ALWAYS" />
-                                                <Button fx:id="addTaskBtn" styleClass="primary-button" text="+ Add" prefWidth="60.0" />
+                                                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                                   <children>
+                                                      <Label style="-fx-font-size: 16px;" text="🎯" />
+                                                      <Label fx:id="goalsProgressLabel" styleClass="stat-number" text="No goals set">
+                                                         <font><Font name="System Bold" size="13.0" /></font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <Label styleClass="stat-label" text="Goals Progress" />
+                                                <ProgressBar fx:id="goalsProgress" prefHeight="4.0" progress="0.0" styleClass="stat-progress" />
                                              </children>
-                                          </HBox>
+                                          </VBox>
 
-                                          <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="200.0" prefHeight="150.0">
-                                             <content>
-                                                <VBox fx:id="tasksList" spacing="8.0" />
-                                             </content>
-                                          </ScrollPane>
+                                          <VBox spacing="6.0" styleClass="stat-card-modern" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                                   <children>
+                                                      <Label style="-fx-font-size: 16px;" text="😊" />
+                                                      <Label fx:id="moodAverageLabel" styleClass="stat-number" text="No mood entries">
+                                                         <font><Font name="System Bold" size="13.0" /></font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <Label styleClass="stat-label" text="Mood Average" />
+                                                <ProgressBar fx:id="moodProgress" prefHeight="4.0" progress="0.0" styleClass="stat-progress" />
+                                             </children>
+                                          </VBox>
                                        </children>
-                                    </VBox>
+                                    </HBox>
                                  </children>
                               </VBox>
 
-                              <!-- Right Column -->
-                              <VBox spacing="20.0" HBox.hgrow="ALWAYS" prefWidth="350.0">
+                              <!-- Pomodoro Timer Card -->
+                              <VBox prefWidth="240.0" spacing="15.0" styleClass="timer-card-enhanced">
                                  <children>
-                                    <!-- Weekly Progress -->
-                                    <VBox styleClass="card">
+                                    <VBox alignment="CENTER" spacing="12.0">
                                        <children>
-                                          <Label styleClass="card-title" text="📊 Weekly Progress" />
-                                          <PieChart fx:id="weeklyProgressChart" prefHeight="150.0" />
-                                       </children>
-                                    </VBox>
+                                          <Label styleClass="timer-title" text="🍅 Focus Session">
+                                             <font><Font name="System Bold" size="13.0" /></font>
+                                          </Label>
 
-                                    <!-- Quick Actions -->
-                                    <VBox styleClass="card">
-                                       <children>
-                                          <Label styleClass="card-title" text="⚡ Quick Actions" />
-                                          <VBox spacing="10.0">
+                                          <StackPane>
                                              <children>
-                                                <Button fx:id="quickNoteBtn" maxWidth="1.7976931348623157E308" styleClass="action-button" text="📝 Quick Note" />
-                                                <Button fx:id="logMoodBtn" maxWidth="1.7976931348623157E308" styleClass="action-button" text="😊 Log Mood" />
-                                                <Button fx:id="createGoalBtn" maxWidth="1.7976931348623157E308" styleClass="action-button" text="🎯 New Goal" />
-                                                <Button fx:id="viewReportsBtn" maxWidth="1.7976931348623157E308" styleClass="action-button" text="📈 View Reports" />
+                                                <Circle radius="60.0" styleClass="timer-circle-bg" />
+                                                <Circle radius="56.0" styleClass="timer-circle-progress" />
+                                                <VBox alignment="CENTER" spacing="3.0">
+                                                   <children>
+                                                      <Label fx:id="timerDisplay" styleClass="timer-display-enhanced" text="25:00">
+                                                         <font><Font name="System Light" size="24.0" /></font>
+                                                      </Label>
+                                                      <Label styleClass="timer-subtitle" text="minutes left">
+                                                         <font><Font size="9.0" /></font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
                                              </children>
-                                          </VBox>
+                                          </StackPane>
+
+                                          <ProgressBar fx:id="timerProgress" prefWidth="160.0" progress="0.0" styleClass="timer-progress-bar" />
+
+                                          <HBox alignment="CENTER" spacing="8.0">
+                                             <children>
+                                                <Button fx:id="startTimerBtn" prefHeight="35.0" prefWidth="35.0" styleClass="timer-button-start" text="▶" />
+                                                <Button fx:id="pauseTimerBtn" prefHeight="35.0" prefWidth="35.0" styleClass="timer-button-pause" text="⏸" />
+                                                <Button fx:id="resetTimerBtn" prefHeight="35.0" prefWidth="35.0" styleClass="timer-button-reset" text="⏹" />
+                                             </children>
+                                          </HBox>
                                        </children>
                                     </VBox>
                                  </children>
@@ -195,40 +256,160 @@
                            </children>
                         </HBox>
 
-                        <!-- Bottom Row -->
-                        <HBox spacing="20.0" fillHeight="false">
+                        <!-- MAIN CONTENT GRID -->
+                        <HBox fillHeight="true" spacing="20.0">
                            <children>
-                              <!-- Recent Activity -->
-                              <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                              <!-- LEFT COLUMN -->
+                              <VBox spacing="18.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Label styleClass="card-title" text="🕒 Recent Activity" />
-                                    <VBox fx:id="recentActivityList" spacing="8.0" />
+                                    <!-- Today's Tasks -->
+                                    <VBox spacing="15.0" styleClass="card-modern">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" spacing="12.0">
+                                             <children>
+                                                <VBox spacing="1.0">
+                                                   <children>
+                                                      <Label styleClass="card-title-large" text="Today's Tasks">
+                                                         <font><Font name="System Bold" size="15.0" /></font>
+                                                      </Label>
+                                                      <Label styleClass="card-subtitle" text="Focus on what matters most" />
+                                                   </children>
+                                                </VBox>
+                                                <Region HBox.hgrow="ALWAYS" />
+                                                <Button styleClass="link-button" text="View All" />
+                                             </children>
+                                          </HBox>
+
+                                          <VBox fx:id="tasksList" spacing="8.0" />
+
+                                          <Button maxWidth="Infinity" styleClass="add-button" text="+ Add New Task" />
+                                       </children>
+                                    </VBox>
+
+                                    <!-- Quick Actions -->
+                                    <VBox spacing="15.0" styleClass="card-modern">
+                                       <children>
+                                          <Label styleClass="card-title-large" text="Quick Actions">
+                                             <font><Font name="System Bold" size="14.0" /></font>
+                                          </Label>
+
+                                          <GridPane hgap="10.0" vgap="10.0">
+                                             <children>
+                                                <Button prefHeight="45.0" prefWidth="110.0" styleClass="quick-action-button" text="📝 New Note" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                                <Button prefHeight="45.0" prefWidth="110.0" styleClass="quick-action-button" text="🎯 Set Goal" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                                <Button prefHeight="45.0" prefWidth="110.0" styleClass="quick-action-button" text="😊 Log Mood" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                                <Button prefHeight="45.0" prefWidth="110.0" styleClass="quick-action-button" text="💾 Export" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                             </children>
+                                             <columnConstraints>
+                                                <ColumnConstraints />
+                                                <ColumnConstraints />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints />
+                                                <RowConstraints />
+                                             </rowConstraints>
+                                          </GridPane>
+                                       </children>
+                                    </VBox>
                                  </children>
                               </VBox>
 
-                              <!-- Motivation & Tips -->
-                              <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                              <!-- RIGHT COLUMN -->
+                              <VBox prefWidth="280.0" spacing="18.0">
                                  <children>
-                                    <Label styleClass="card-title" text="💡 Daily Tip" />
-                                    <VBox spacing="10.0">
+                                    <!-- Productivity Insights -->
+                                    <VBox spacing="15.0" styleClass="card-modern">
                                        <children>
-                                          <Label fx:id="motivationQuote" wrapText="true" styleClass="quote-text"
-                                                 text="Focus on progress, not perfection. Every small step counts!" />
-                                          <Button fx:id="newTipBtn" styleClass="link-button" text="Get New Tip" />
+                                          <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                             <children>
+                                                <Label style="-fx-font-size: 14px;" text="📊" />
+                                                <Label styleClass="card-title-large" text="Productivity Insights">
+                                                   <font><Font name="System Bold" size="13.0" /></font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+
+                                          <VBox spacing="12.0">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="12.0">
+                                                   <children>
+                                                      <VBox alignment="CENTER" spacing="3.0">
+                                                         <children>
+                                                            <Label style="-fx-font-size: 18px;" text="🔥" />
+                                                            <Label fx:id="streakLabel" styleClass="insight-number" text="No active streak" />
+                                                            <Label styleClass="insight-label" text="Streak" />
+                                                         </children>
+                                                      </VBox>
+                                                      <Region HBox.hgrow="ALWAYS" />
+                                                      <VBox alignment="CENTER" spacing="3.0">
+                                                         <children>
+                                                            <Label style="-fx-font-size: 18px;" text="⚡" />
+                                                            <Label fx:id="efficiencyLabel" styleClass="insight-number" text="--" />
+                                                            <Label styleClass="insight-label" text="Efficiency" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+
+                                                <Separator />
+
+                                                <VBox spacing="6.0">
+                                                   <children>
+                                                      <Label styleClass="card-subtitle" text="Today's Progress" />
+                                                      <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                                         <children>
+                                                            <Label styleClass="progress-label" text="Tasks" />
+                                                            <ProgressBar fx:id="todayTasksProgress" progress="0.0" styleClass="insight-progress" HBox.hgrow="ALWAYS" />
+                                                            <Label fx:id="todayProgressLabel" styleClass="progress-value" text="No progress yet" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                                         <children>
+                                                            <Label styleClass="progress-label" text="Focus" />
+                                                            <ProgressBar fx:id="todayFocusProgress" progress="0.0" styleClass="insight-progress" HBox.hgrow="ALWAYS" />
+                                                            <Label styleClass="progress-value" text="0h" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </VBox>
                                        </children>
                                     </VBox>
+
+                                    <!-- Recent Activity -->
+                                    <VBox spacing="15.0" styleClass="card-modern">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                             <children>
+                                                <Label style="-fx-font-size: 14px;" text="⚡" />
+                                                <Label styleClass="card-title-large" text="Recent Activity">
+                                                   <font><Font name="System Bold" size="13.0" /></font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+
+                                          <VBox fx:id="recentActivityContainer" spacing="8.0">
+                                             <children>
+                                                <Label fx:id="recentActivityLabel" styleClass="activity-empty" text="No recent activity" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+
+                                    <!-- Motivational Card -->
+                                    <VBox spacing="12.0" styleClass="inspiration-card-enhanced" />
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
                      </children>
-                     <padding>
-                        <Insets bottom="30.0" left="30.0" right="30.0" top="20.0" />
-                     </padding>
+                     <padding><Insets bottom="25.0" left="20.0" right="20.0" top="20.0" /></padding>
                   </VBox>
                </content>
             </ScrollPane>
          </children>
       </StackPane>
    </center>
+
 </BorderPane>

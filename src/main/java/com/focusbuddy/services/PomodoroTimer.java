@@ -10,9 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PomodoroTimer {
-    private int focusDuration = 25 * 60; // 25 minutes in seconds
-    private int breakDuration = 5 * 60;  // 5 minutes in seconds
-    private int longBreakDuration = 20 * 60; // 20 minutes in seconds
+    private static final int FOCUS_DURATION = 25 * 60; // 25 minutes in seconds
+    private static final int BREAK_DURATION = 5 * 60;  // 5 minutes in seconds
 
     private Timeline timeline;
     private int currentSeconds;
@@ -82,8 +81,8 @@ public class PomodoroTimer {
         }
         isRunning = false;
         isFocusSession = true;
-        currentSeconds = focusDuration;
-        totalSeconds = focusDuration;
+        currentSeconds = FOCUS_DURATION;
+        totalSeconds = FOCUS_DURATION;
         updateDisplay();
         notifyObservers("RESET");
     }
@@ -100,14 +99,8 @@ public class PomodoroTimer {
 
         // Switch between focus and break
         isFocusSession = !isFocusSession;
-        if (isFocusSession) {
-            currentSeconds = focusDuration;
-            totalSeconds = focusDuration;
-        } else {
-            // You can add logic here to determine if it's a long break or short break
-            currentSeconds = breakDuration;
-            totalSeconds = breakDuration;
-        }
+        currentSeconds = isFocusSession ? FOCUS_DURATION : BREAK_DURATION;
+        totalSeconds = currentSeconds;
         updateDisplay();
     }
 
@@ -131,56 +124,11 @@ public class PomodoroTimer {
         return isFocusSession;
     }
 
-    // New setter methods for configurable durations
-    public void setFocusDuration(int minutes) {
-        this.focusDuration = minutes * 60;
-        if (isFocusSession && !isRunning) {
-            currentSeconds = focusDuration;
-            totalSeconds = focusDuration;
-            updateDisplay();
-        }
-    }
-
-    public void setBreakDuration(int minutes) {
-        this.breakDuration = minutes * 60;
-        if (!isFocusSession && !isRunning) {
-            currentSeconds = breakDuration;
-            totalSeconds = breakDuration;
-            updateDisplay();
-        }
-    }
-
-    public void setLongBreakDuration(int minutes) {
-        this.longBreakDuration = minutes * 60;
-    }
-
-    public int getFocusDurationMinutes() {
-        return focusDuration / 60;
-    }
-
-    public int getBreakDurationMinutes() {
-        return breakDuration / 60;
-    }
-
-    public int getLongBreakDurationMinutes() {
-        return longBreakDuration / 60;
-    }
-
     public void setOnTimeUpdate(BiConsumer<Integer, Integer> onTimeUpdate) {
         this.onTimeUpdate = onTimeUpdate;
     }
 
     public void setOnTimerComplete(Runnable onTimerComplete) {
         this.onTimerComplete = onTimerComplete;
-    }
-
-    // Method to set break duration (short or long)
-    public void setCurrentBreakDuration(boolean isLongBreak) {
-        if (!isFocusSession && !isRunning) {
-            int duration = isLongBreak ? longBreakDuration : breakDuration;
-            currentSeconds = duration;
-            totalSeconds = duration;
-            updateDisplay();
-        }
     }
 }
